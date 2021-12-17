@@ -2,9 +2,16 @@
 <html lang="">
 
 <head>
-    <title>
+    {% if title %}
 
+    <title>
+        Flask Blog - {{ title }}
     </title>
+    {% else %}
+    <title>
+        Flask Blog
+    </title>
+    {% endif %}
 </head>
 
 <body>
