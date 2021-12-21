@@ -5,7 +5,7 @@ from Flaskblog import app, bcrypt, db
 from Flaskblog.forms import LoginForm, RegestrationForm, AccountUpdateForm
 from Flaskblog.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
-
+from PIL import Image
 
 posts = [
     {
@@ -87,7 +87,11 @@ def save_pic(f_picture):
     picture_path = os.path.join(
         app.root_path, 'static/profile_pics', picture_file)
 
-    f_picture.save(picture_path)
+    output_size = (125, 125)
+    img = Image.open(f_picture)
+    img.thumbnail(output_size)
+
+    img.save(picture_path)
 
     return picture_file
 
