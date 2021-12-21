@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileAllowed
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import Length, DataRequired, Email, EqualTo, ValidationError
 from Flaskblog.models import User
@@ -49,6 +50,9 @@ class AccountUpdateForm(FlaskForm):
                            DataRequired(), Length(2, 20)])
 
     email = StringField('Email', validators=[DataRequired(), Email()])
+
+    picture = FileField('Update Porfile Picture',
+                        validators=[FileAllowed(['png', 'jpg'])])
 
     submit = SubmitField('Update')
 
